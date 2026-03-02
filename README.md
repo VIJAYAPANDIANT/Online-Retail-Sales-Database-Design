@@ -140,4 +140,4 @@ Identifies top-spending customers.
 
 ## 📜 Author
 
-Design and Implementation by **VIJAYA PANDIAN.T**.
+Design and Implementation by **VIJAYAPANDIAN.T**.
