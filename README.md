@@ -7,7 +7,7 @@ This project implement a **Normalized 3rd Normal Form (3NF)** relational databas
 ## Database Diagram
 
 You can view the database schema diagram here:
-[View Database Diagram](https://drive.google.com/file/d/1aPpZHlUhFCAFHqKVuJwO90tyL0crX7Ky/view?usp=sharing)
+[View Database Diagram](https://drive.google.com/file/d/1GTRryWbzC-ndP1cEQBXxmjFuSXKXLK8Q/view?usp=sharing)
 
 ## 📂 File Structure
 
