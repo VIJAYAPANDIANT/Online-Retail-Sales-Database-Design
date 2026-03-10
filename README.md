@@ -6,12 +6,12 @@ This project implement a **Normalized 3rd Normal Form (3NF)** relational databas
 
 ### Document :
 
-### https://drive.google.com/file/d/1CHJtzg1UB8GhbU2UpE6vCPtTSKxPqf4R/view?usp=sharing
+### https://drive.google.com/file/d/1IDZ16cHi-L6vEmd5wcg24QTdLVhyAO9P/view?usp=sharing
 
 ## 📱 Database Diagram
 
 You can view the database schema diagram here:
-[View Database Diagram](https://drive.google.com/file/d/1IDZ16cHi-L6vEmd5wcg24QTdLVhyAO9P/view?usp=sharing)
+[View Database Diagram](https://drive.google.com/file/d/1GTRryWbzC-ndP1cEQBXxmjFuSXKXLK8Q/view?usp=sharing)
 
 ## 📂 File Structure
 
