@@ -4,9 +4,9 @@
 
 This project implement a **Normalized 3rd Normal Form (3NF)** relational database for an online retail platform. It is designed to handle core e-commerce functionalities such as managing customers, products, orders, and payments. The database schema ensures data integrity, minimizes redundancy, and supports efficient querying for sales analysis.
 
-### Document 
+### Document :
 
-# https://drive.google.com/file/d/1CHJtzg1UB8GhbU2UpE6vCPtTSKxPqf4R/view?usp=sharing
+## https://drive.google.com/file/d/1CHJtzg1UB8GhbU2UpE6vCPtTSKxPqf4R/view?usp=sharing
 
 ## 📱 Database Diagram
 
