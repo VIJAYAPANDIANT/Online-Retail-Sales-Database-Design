@@ -1,156 +1,107 @@
-# Online Retail Sales Database Design
+# 🛒 Online Retail Sales Database Design
+
+![SQL](https://img.shields.io/badge/SQL-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Database](https://img.shields.io/badge/Database-Relational-blue?style=for-the-badge&logo=databricks&logoColor=white)
+![Normalization](https://img.shields.io/badge/Normalization-3NF-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 ## 📌 Project Overview
 
-This project implement a **Normalized 3rd Normal Form (3NF)** relational database for an online retail platform. It is designed to handle core e-commerce functionalities such as managing customers, products, orders, and payments. The database schema ensures data integrity, minimizes redundancy, and supports efficient querying for sales analysis.
+This project implements a **Normalized 3rd Normal Form (3NF)** relational database for an online retail platform. It is engineered to handle core e-commerce functionalities such as managing customers, products, orders, and payments with high integrity and minimal redundancy.
 
 ---
 
-## 📂 Document
+## 🗺️ Database Architecture & Documentation
 
-### https://drive.google.com/file/d/1IDZ16cHi-L6vEmd5wcg24QTdLVhyAO9P/view?usp=sharing
+The database is built on a highly interconnected schema that ensures seamless data flow between core modules.
+
+> [!TIP]
+> **Project Resources:**
+> - 🔗 **[View Database Schema Diagram](https://drive.google.com/file/d/1GTRryWbzC-ndP1cEQBXxmjFuSXKXLK8Q/view?usp=sharing)**
+> - 📂 **[View Project Documentation](https://drive.google.com/file/d/1IDZ16cHi-L6vEmd5wcg24QTdLVhyAO9P/view?usp=sharing)**
 
 ---
-
-## 📱 Database Diagram
-
-You can view the database schema diagram here:
-[View Database Diagram](https://drive.google.com/file/d/1GTRryWbzC-ndP1cEQBXxmjFuSXKXLK8Q/view?usp=sharing)
 
 ## 📂 File Structure
 
-| File                     | Description                                                                                                                                                                                         |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`schema.sql`**         | Defines the database structure. Creates the database `OnlineRetailDB` and all tables (`Customers`, `Products`, `Orders`, `Order_Items`, `Payments`) with appropriate relationships and constraints. |
-| **`data.sql`**           | Populates the tables with sample data for testing purposes (Users, Products, Orders, etc.).                                                                                                         |
-| **`queries.sql`**        | Contains analytical SQL queries and Views to generate reports on sales performance and customer spending.                                                                                           |
-| **`full_setup.sql`**     | A unified script that combines schema creation, data insertion, and queries into a single execution file.                                                                                           |
-| **`setup_and_test.bat`** | An automated Windows batch script to run the full setup process with a single click.                                                                                                                |
+| File | Description |
+| :--- | :--- |
+| **`schema.sql`** | Defines the database structure, tables, and relationships. |
+| **`data.sql`** | Populates the tables with comprehensive sample data. |
+| **`queries.sql`** | Contains analytical SQL queries and Views for reporting. |
+| **`full_setup.sql`** | A unified script combining schema, data, and queries. |
+| **`setup_and_test.bat`** | Windows Batch script for one-click database setup. |
+| **`run_retail_db.ps1`** | PowerShell script for automated setup and testing. |
+
+---
 
 ## 🗄️ Database Schema Reference
 
-The database consists of 5 main tables tailored for e-commerce operations.
+The database consists of 5 core tables designed for efficiency and scalability.
 
 ### 1. Customers
-
-Stores comprehensive customer information.
-
-- **`customer_id`** (INT, PK): Unique identifier for each customer.
-- **`first_name`, `last_name`**: Customer's full name.
-- **`email`** (VARCHAR, UNIQUE): Customer's email address (must be unique).
-- **`phone`, `address`, `city`, `state`, `zip_code`**: Contact and shipping details.
-- **`created_at`**: Timestamp of account creation.
+Stores user profiles and contact information.
+- `customer_id` (PK): Unique identifier.
+- `email` (Unique): Ensures no duplicate accounts.
 
 ### 2. Products
-
-Manages the inventory of items available for sale.
-
-- **`product_id`** (INT, PK): Unique identifier for each product.
-- **`name`**: Name of the product.
-- **`description`**: Detailed description.
-- **`price`** (DECIMAL): Unit price of the product.
-- **`stock_quantity`** (INT): Current stock level.
-- **`category`**: Product category (e.g., Electronics, Furniture).
+Manages inventory and pricing details.
+- `product_id` (PK): Unique identifier.
+- `stock_quantity`: Real-time inventory tracking.
 
 ### 3. Orders
-
-Tracks customer orders and their current status.
-
-- **`order_id`** (INT, PK): Unique identifier for each order.
-- **`customer_id`** (INT, FK): Links to the `Customers` table.
-- **`order_date`**: Timestamp when the order was placed.
-- **`status`** (ENUM): Current state (`Pending`, `Shipped`, `Delivered`, `Cancelled`).
-- **`total_amount`**: Calculated total cost of the order.
+Tracks customer purchases and shipment status.
+- `order_id` (PK): Unique identifier.
+- `status`: Tracks lifecycle (`Pending`, `Shipped`, `Delivered`, `Cancelled`).
 
 ### 4. Order_Items
-
-_Junction Table_ handling the Many-to-Many relationship between Orders and Products.
-
-- **`order_item_id`** (INT, PK): Unique identifier.
-- **`order_id`** (INT, FK): Links to `Orders`.
-- **`product_id`** (INT, FK): Links to `Products`.
-- **`quantity`**: Number of units purchased.
-- **`unit_price`**: Price per unit at the time of purchase (preserves historical pricing).
+The junction table linking orders and products (Many-to-Many).
+- `quantity`: Items per order.
+- `unit_price`: Captures price at the time of purchase.
 
 ### 5. Payments
-
-Records payment transactions for orders.
-
-- **`payment_id`** (INT, PK): Unique identifier.
-- **`order_id`** (INT, FK): Links to the paid order.
-- **`amount`**: Payment amount.
-- **`payment_method`** (ENUM): Method used (`Credit Card`, `PayPal`, `Bank Transfer`).
-- **`status`** (ENUM): Transaction status (`Success`, `Failed`).
+Handles transaction records for every order.
+- `payment_method`: Supports `Credit Card`, `PayPal`, `Bank Transfer`.
 
 ---
 
 ## 🚀 Setup and Installation
 
-### Prerequisites
+### Option 1: Automated Setup (Recommended)
 
-- **MySQL Server** 8.0 or higher.
-- **MySQL Command Line Client** (added to your system PATH is recommended).
+**For Windows Users:**
+1. Right-click **`run_retail_db.ps1`** and select "Run with PowerShell".
+2. Or simply run the **`setup_and_test.bat`** file.
+3. Follow the prompts to enter your MySQL credentials.
 
-### Option 1: Automatic Setup (Windows)
+### Option 2: Manual Setup
 
-1. Navigate to the project folder.
-2. Double-click **`setup_and_test.bat`**.
-3. When prompted, enter your MySQL **username** (default: `root`) and **password**.
-4. The script will:
-   - Create the database.
-   - Create all tables.
-   - Insert sample data.
-   - Run analysis queries and display the results.
-
-### Option 2: Manual Execution
-
-If you prefer running scripts manually or are on a non-Windows system, execute the files in the following order using your terminal or MySQL Workbench:
-
-1.  **Login to MySQL:**
-    ```bash
-    mysql -u root -p
-    ```
-2.  **Run Schema Script:**
-    ```sql
-    SOURCE schema.sql;
-    ```
-3.  **Run Data Script:**
-    ```sql
-    SOURCE data.sql;
-    ```
-4.  **Run Queries Script:**
-    ```sql
-    SOURCE queries.sql;
-    ```
+1. **Login to MySQL:**
+   ```bash
+   mysql -u root -p
+   ```
+2. **Execute the Setup Script:**
+   ```sql
+   SOURCE full_setup.sql;
+   ```
 
 ---
 
-## 📊 Analytical Queries & Views
+## 📊 Analytical Insights
 
-The `queries.sql` file includes powerful views for business intelligence:
+The project includes pre-configured **SQL Views** to provide instant business intelligence:
 
-### 1. Product Sales Report (`ProductSales` View)
+- **`ProductSales`**: Summarizes revenue and units sold per product.
+- **`CustomerSpending`**: Identifies top customers by total expenditure.
 
-Analyses revenue generated by each product.
-
-- **Columns**: `product_name`, `total_units_sold`, `total_revenue`.
-- **Usage**:
-  ```sql
-  SELECT * FROM ProductSales;
-  ```
-
-### 2. Customer Spending Report (`CustomerSpending` View)
-
-Identifies top-spending customers.
-
-- **Columns**: `full_name`, `total_orders`, `total_spent`.
-- **Usage**:
-  ```sql
-  SELECT * FROM CustomerSpending;
-  ```
+```sql
+-- Example: View top selling products
+SELECT * FROM ProductSales ORDER BY total_revenue DESC;
+```
 
 ---
 
-## 📜 Author
+## 📜 License & Author
 
 Design and Implementation by **VIJAYAPANDIAN.T**.
+This project is licensed under the **MIT License**. Feel free to use it for educational or commercial purposes.
